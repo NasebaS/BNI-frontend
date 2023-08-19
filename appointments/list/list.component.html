@@ -1,0 +1,370 @@
+<div class="container-fluid">
+  <div class="row mt-4 mb-3">
+    <div class="col-lg-6 pt-2">
+      <h3>Medical Requests</h3>
+    </div>
+    <div class="col-lg-6 text-end">
+      <!-- <a class="btn btn-info mr-3" style="margin-right:10px;"><i class="fas fa-file-download"></i> Download Employees</a> -->
+      <a routerLink="/appointments/add" class="btn btn-primary"><i class="fa fa-plus-circle"></i> New Medical Request</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <ul ngbNav #customNav="ngbNav" [activeId]="1" class="nav-tabs nav-tabs-custom">
+                <li [ngbNavItem]="1">
+                  <a ngbNavLink (click)="resetdatatable()">
+                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                    <span class="d-none d-sm-block">Ongoing Medical Requests</span>
+                  </a>
+                  <ng-template ngbNavContent>
+                    <ng-template [ngTemplateOutlet]="TabContent"></ng-template>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                  <a ngbNavLink (click)="resetdatatable()">
+                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                    <span class="d-none d-sm-block">Medical Request History</span>
+                  </a>
+                  <ng-template ngbNavContent>
+                    <ng-template [ngTemplateOutlet]="TabContent1"></ng-template>
+                  </ng-template>
+                </li>
+              </ul>
+              <div [ngbNavOutlet]="customNav"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #TabContent>
+  <div class="col-lg-12 mt-5">
+    <div class="row">
+      <h4 class="text-green">FILTER BY</h4>
+
+      <div class="col-md-3">
+        <div class="mb-4">
+          <label>Choose Service</label>
+          <ng-select
+            id="txtService"
+            [items]="selectServices"
+            bindLabel="sectorName"
+            bindValue="sectorId"
+            (change)="serviceSelctionChanged($event)"
+            [(ngModel)]="selectServices"
+          ></ng-select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="mb-4">
+          <label>Choose Client</label>
+          <ng-select
+            id="txtEmployee"
+            [items]="selectEmployee"
+            bindLabel="employeeName"
+            bindValue="corpEmpId"
+            (change)="employeeSelctionChanged($event)"
+          ></ng-select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="mb-4">
+          <label for="firstname">From Date</label>
+          <input id="txtFromDate" type="date" class="form-control" (change)="fromDateChanged($event)" />
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="mb-4">
+          <label for="firstname">To Date</label>
+          <input id="txtToDate" type="date" class="form-control" (change)="toDateChanged($event)" />
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="mb-4">
+          <label>Status</label>
+          <ng-select id="txtStatus" [items]="selectStatus" [multiple]="true" (change)="statusChanged($event)"></ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3 pb-3" style="border-bottom: 1px solid #ccc">
+      <div class="col-lg-6"></div>
+      <div class="col-lg-6 text-end">
+        <a (click)="ClearFilterClicked()" class="btn btn-light">Clear</a>
+        <a class="btn btn-primary" style="margin-left: 10px" (click)="filterongoingRecords()">Filter</a>
+      </div>
+    </div>
+  </div>
+  <!-- Table -->
+  <div class="table-responsive">
+    <table id="example" class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline display" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Apt ID</th>
+          <th>Client Name</th>
+          <th>Booking Date</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Lab Name</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of ongoingAppointmentList; let i = index" class="el-table__row">
+          <td>
+            <div class="cell">
+              <p>{{ appointment.appointmentDisplayId }}</p>
+              <p>{{ appointment.serviceName }}</p>
+            </div>
+          </td>
+          <td class="cell">
+            <p>{{ appointment.patientFirstName }} {{ appointment.patientLastName }}</p>
+          </td>
+          <td>
+            <div class="cell">
+              <p>{{ appointment.appointmentBookingDate }}</p>
+              <!-- <p>{{ appointment.appointmentTime }}</p> -->
+            </div>
+          </td>
+          <td>{{ appointment.patientMobile }}</td>
+          <td>{{ appointment.patientEmail }}</td>
+          <td>{{ appointment.city }}</td>
+          <td>{{ appointment.labName }}</td>
+          <td>{{ appointment.appointmentStage }}</td>
+          <td style="text-align: center;">
+            <a (click)="viewAppointmentDetails(appointment)" class="cursor"><i class="far fa-eye"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<!-- Tab Content -->
+<ng-template #TabContent1>
+  <div class="col-lg-12 mt-5">
+    <div class="row">
+      <h4 class="text-green">FILTER BY</h4>
+
+      <div class="col-md-3">
+        <div class="mb-4">
+          <label>Choose Service</label>
+          <ng-select
+            id="txtCompletedService"
+            [items]="selectServices"
+            bindLabel="sectorName"
+            bindValue="sectorId"
+            (change)="completedServiceSelctionChanged($event)"
+          ></ng-select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="mb-4">
+          <label>Choose Client</label>
+          <ng-select
+            id="txtCompletedEmployee"
+            [items]="selectEmployee"
+            bindLabel="employeeName"
+            bindValue="corpEmpId"
+            (change)="completedEmployeeSelctionChanged($event)"
+          ></ng-select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="mb-4">
+          <label for="firstname">From Date</label>
+          <input id="txtCompletedFromDate" type="date" class="form-control" (change)="completedFromDateChanged($event)" />
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="mb-4">
+          <label for="firstname">To Date</label>
+          <input id="txtCompletedToDate" type="date" class="form-control" (change)="completedToDateChanged($event)" />
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="mb-4">
+          <label>Status</label>
+          <ng-select id="txtCompletedStatus" [items]="selectClosedStatus" [multiple]="true" (change)="completedStatusChanged($event)"></ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3 pb-3" style="border-bottom: 1px solid #ccc">
+      <div class="col-lg-6"></div>
+      <div class="col-lg-6 text-end">
+        <a (click)="ClearCompletedFilterClicked()" class="btn btn-light">Clear</a>
+        <a class="btn btn-primary" style="margin-left: 10px" (click)="filterCompletedRecords()">Filter</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table id="example1" class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline display" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Apt ID</th>
+          <th>Client Name</th>
+          <th>Booking Date</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Lab Name</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of completedAppointmentList; let i = index" class="el-table__row">
+          <td>
+            <div class="cell">
+              <p>{{ appointment.appointmentDisplayId }}</p>
+              <p>{{ appointment.serviceName }}</p>
+            </div>
+          </td>
+          <td>{{ appointment.patientFirstName }} {{ appointment.patientLastName }}</td>
+          <td>
+            <div class="cell">
+              <!-- <p>{{ appointment.appointmentDate }}</p>
+            <p>{{ appointment.appointmentTime }}</p> -->
+
+              <p>{{ appointment.appointmentBookingDate }}</p>
+            </div>
+          </td>
+          <td>{{ appointment.patientMobile }}</td>
+          <td>{{ appointment.patientEmail }}</td>
+          <td>{{ appointment.city }}</td>
+          <td>{{ appointment.labName }}</td>
+          <td>{{ appointment.appointmentStage }}</td>
+          <td style="text-align: center;">
+            <a (click)="viewAppointmentDetails(appointment)" class="cursor"><i class="far fa-eye"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- End table -->
+  <!-- <div class="row justify-content-md-between align-items-md-center mt-2">
+  <div class="col-sm-12 col-md-5">
+    <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">Showing
+      {{service.startIndex}} to
+      {{service.endIndex}} of {{service.totalRecords}}
+      entries
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-5">
+    <div class="text-md-right float-md-end pagination-rounded">
+      <ngb-pagination [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+      </ngb-pagination>
+    </div>
+  </div>
+</div> -->
+</ng-template>
+
+<ng-template #viewRequest let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">John Willamson Claim Details</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Close click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row mt-3 mb-3">
+      <div class="col-lg-12">
+        <div class="col-lg-12" style="background: #d3e8f5">
+          <h5 class="mb-0 text-primary py-2 px-2">Children and Older People Escort</h5>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="hori-timeline py-3" style="background: #e6f3fb">
+          <owl-carousel-o [options]="timelineCarousel" class="events navs-carousel">
+            <ng-template carouselSlide>
+              <div class="item event-list">
+                <div>
+                  <div class="event-date">
+                    <div class="mb-1">28-06-2022 <br />12:44</div>
+                    <h6 class="mb-4 text-success">Scheduled</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bx-down-arrow-circle h1 text-green down-arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item event-list">
+                <div>
+                  <div class="event-date">
+                    <div class="mb-1">28-06-2022 <br />05:43</div>
+                    <h6 class="mb-4 text-success">Accepted</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bx-down-arrow-circle h1 text-green down-arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item event-list">
+                <div>
+                  <div class="event-date">
+                    <div class="mb-1">28-06-2022 <br />05:43</div>
+                    <h6 class="mb-4 text-success">On the way</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bx-down-arrow-circle h1 text-green down-arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item event-list active">
+                <div>
+                  <div class="event-date">
+                    <div class="mb-1">14-07-2022<br />15:00</div>
+                    <h6 class="mb-4 text-green">Sample Collected</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bx-down-arrow-circle h1 text-green down-arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item event-list">
+                <div>
+                  <div class="event-date">
+                    <div class="text-primary mb-1">--<br />--</div>
+                    <h6 class="mb-4 text-muted">Waiting for Result</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bx-down-arrow-circle h1 text-muted down-arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item event-list">
+                <div>
+                  <div class="event-date">
+                    <div class="text-primary mb-1">--<br />--</div>
+                    <h6 class="mb-4 text-muted">Completed</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bx-down-arrow-circle h1 text-muted down-arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

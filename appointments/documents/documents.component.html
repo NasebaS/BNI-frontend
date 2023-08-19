@@ -1,0 +1,385 @@
+<div class="container-fluid">
+  <div class="row mt-4" *ngIf="appointmentDetails">
+    <div class="col-lg-6">
+      <h4 class="mb-3 font-size-18">
+        APPOINTMENT VIEW - <span class="text-danger">{{ appointmentDetails.appointmentIdText }}</span>
+      </h4>
+    </div>
+    <div class="col-lg-6 text-end">
+      <a routerLink="/appointments/list"><i class="fas fa-arrow-left"></i> Back to Medical Requests</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <div class="col-lg-12">
+        <div class="card" style="min-height: 315px;">
+          <div class="card-body py-0" style="border: 1px solid #dceffa; padding-left: 10px">
+            <div class="row">
+              <div class="col-lg-4 emp-img">
+                <h5 class="text-center"><img src="{{ imgPreview }}" class="rounded-circle text-center avatar-lg" style="border: 2px solid #007dc4" /></h5>
+                <h5 class="text-center text-green">{{ appointmentDetails.employeerName }}</h5>
+                <p class="text-center">{{ appointmentDetails.email }}</p>
+
+                <!-- <div class="row">
+                  <div class="col-lg-6" style="border-right: 1px dashed #729699">
+                    <h2 class="text-center mb-0">2</h2>
+                    <p class="text-center mb-0">Services</p>
+                  </div>
+                  <div class="col-lg-6">
+                    <h2 class="text-center mb-0">3</h2>
+                    <p class="text-center mb-0">Medical Requests</p>
+                  </div>
+                </div> -->
+              </div>
+
+              <div class="col-lg-8 p-3">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <h6 class="mb-1">Gender</h6>
+                    <h6 class="text-muted">{{ appointmentDetails.genderText }}</h6>
+                  </div>
+                  <div class="col-lg-4">
+                    <h6 class="mb-1">DOB</h6>
+                    <h6 class="text-muted">{{ appointmentDetails.dob }}</h6>
+                  </div>
+                  <div class="col-lg-4">
+                    <h6 class="mb-1">Mobile</h6>
+                    <h6 class="text-muted">{{ appointmentDetails.mobileNumber }}</h6>
+                  </div>
+                </div>
+
+                <div class="row mt-4 pb-2" style="border-bottom: 1px solid #cfe9eb">
+                  <div class="col-lg-4">
+                    <h6 class="mb-1">Policy ID</h6>
+                    <h6 class="text-muted">{{ selectedEmployee.policyId }}</h6>
+                  </div>
+                  <div class="col-lg-4">
+                    <h6 class="mb-1">Nationality ID</h6>
+                    <h6 class="text-green">{{ appointmentDetails.nationalId }}</h6>
+                  </div>
+                  <div class="col-lg-4">
+                    <h6 class="mb-1">Insurance Number</h6>
+                    <h6 class="text-danger">{{ selectedEmployee.insuranceNumber }}</h6>
+                  </div>
+                </div>
+
+                <div class="row mt-2 pt-2">
+                  <div class="col-lg-6">
+                    <h6 class="mb-1">Address</h6>
+                    <h6 class="text-muted">{{ selectedEmployee.address }}</h6>
+                  </div>
+                  <div class="col-lg-3">
+                    <h6 class="mb-1">City</h6>
+                    <h6 class="text-muted">{{ appointmentDetails.city }}</h6>
+                  </div>
+                  <div class="col-lg-3">
+                    <h6 class="mb-1">Zip Code</h6>
+                    <h6 class="text-muted">{{ appointmentDetails.zipCode }}</h6>
+                  </div>
+                </div>
+
+                <div class="row mt-2 pt-2">
+                  <div class="col-lg-6">
+                    <h6 class="mb-1">Service Date</h6>
+                    <h6 class="text-success" *ngIf="appointmentDetails.serviceDate != 'Invalid date'">
+                      {{ appointmentDetails.serviceDate }} {{ appointmentDetails.serviceTime }}
+                    </h6>
+                    <h6 class="text-success" *ngIf="appointmentDetails.serviceDate == 'Invalid date'"></h6>
+                  </div>
+                  <div class="col-lg-6">
+                    <h6 class="mb-1">Current Status</h6>
+                    <h6 class="text-muted">
+                      <span class="badge bg-success pt-1 font-size-12">{{ appointmentDetails.appointmentCurrentStatusText }}</span>
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="col-lg-12">
+        <div class="card" style="min-height: 275px">
+          <div class="card-body pl-0">
+            <div class="row">
+              <div class="col-lg-12">
+                <h5 class="text-green"><i class="fas fa-calendar-alt"></i> Appointment Details</h5>
+                <div class="row mt-2 pt-2">
+                  <div class="col-lg-6">
+                    <h6 class="mb-1">Appointment ID</h6>
+                    <h6 class="text-muted">{{ appointmentDetails.appointmentIdText }}</h6>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <h6 class="mb-1">Gender</h6>
+                    <h6 class="text-muted">{{ selectedEmployee.genderText }}</h6>
+                  </div>
+                </div>
+                <h5 class="text-green mt-3">Service Booked</h5>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12 alert alert-success">
+                <p class="mb-0">{{ appointmentDetails.serviceDescription }}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <h5 class="text-green mt-3">Selected Lab</h5>
+              <div class="col-lg-12 alert alert-success" style="margin-bottom: 0px;">
+                <p class="mb-0">{{ appointmentDetails.labName }}</p>
+              </div>
+            </div>
+
+            <!-- <div class="row">
+          <div class="col-lg-12 alert alert-success">
+            
+            <p class="mb-0">Home Nursing Services</p>
+          </div>
+        </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding-right: 0px">
+      <div class="col-lg-12 mt-3" style="padding-right: 0px">
+        <h4 class="text-green">
+          Appointment Status: <span class="text-danger">{{ appointmentDetails.appointmentStatusText }}</span>
+        </h4>
+        <div class="card">
+          <div class="card-body">
+            <div class="hori-timeline">
+              <owl-carousel-o [options]="timelineCarousel" class="events navs-carousel">
+                <ng-template carouselSlide *ngFor="let history of appointmentStatusCompleted">
+                  <div class="item event-list">
+                    <div>
+                      <div class="event-date">
+                        <div class="mb-1">{{ history.updateDate }} <br />{{ history.updateTime }}</div>
+                        <h6 class="mb-4 text-success">{{ history.statusText }}</h6>
+                      </div>
+                      <div class="event-down-icon">
+                        <i *ngIf="history.statusText == 'Scheduled'" class="bx bx-calendar-check h1 text-success down-arrow-icon"></i>
+                        <i *ngIf="history.statusText != 'Scheduled'" class="bx bxs-check-circle h1 text-success down-arrow-icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <!-- <ng-template carouselSlide>
+              <div class="item event-list">
+                <div>
+                  <div class="event-date">
+                    <div class="mb-1">28-06-2022 <br/>05:43</div>
+                    <h6 class="mb-4 text-success">Accepted</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bxs-check-circle h1 text-success down-arrow-icon"></i>
+                  </div>   
+                </div>
+              </div>
+            </ng-template> -->
+                <ng-template carouselSlide *ngIf="appointmentStatusInProgress != null">
+                  <div class="item event-list active">
+                    <div>
+                      <div class="event-date">
+                        <div class="mb-1">{{ appointmentStatusInProgress.updateDate }} <br />{{ appointmentStatusInProgress.updateTime }}</div>
+                        <h6 class="mb-4 text-green">{{ appointmentStatusInProgress.statusText }}</h6>
+                      </div>
+                      <div class="event-down-icon">
+                        <i class="bx bx-down-arrow-circle h1 text-green down-arrow-icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template carouselSlide *ngFor="let history of appointmentStatusOpen">
+                  <div class="item event-list">
+                    <div>
+                      <div class="event-date">
+                        <div class="text-primary mb-1">--<br />--</div>
+                        <h6 class="mb-4 text-muted">{{ history.statusText }}</h6>
+                      </div>
+                      <div class="event-down-icon">
+                        <i class="bx bxs-minus-circle h1 down-arrow-icon" style="color: #a4c4d7"></i>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <!-- <ng-template carouselSlide>
+              <div class="item event-list">
+                <div>
+                  <div class="event-date">
+                    <div class="text-primary mb-1">--<br/>--</div>
+                    <h6 class="mb-4 text-muted">Waiting for Result</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bxs-minus-circle h1 down-arrow-icon" style="color:#a4c4d7"></i>
+                  </div> 
+                </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item event-list">
+                <div>
+                  <div class="event-date">
+                    <div class="text-primary mb-1">--<br/>--</div>
+                    <h6 class="mb-4 text-muted">Completed</h6>
+                  </div>
+                  <div class="event-down-icon">
+                    <i class="bx bxs-minus-circle h1 down-arrow-icon" style="color:#a4c4d7"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template> -->
+              </owl-carousel-o>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding-right: 0px">
+      <div class="col-lg-6">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body pl-0">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="text-green"><i class="fas fa-sticky-note"></i>  Patient Notes</h5>
+
+                  <div class="row mt-2 pt-2">
+                    <div class="col-lg-12" style="min-height: 50px">
+                      <h6 *ngIf="appointmentDetails.patientNotes != null" class="text-muted mt-4">{{ appointmentDetails.patientNotes }}</h6>
+                      <h6 *ngIf="appointmentDetails.patientNotes == null" class="text-muted text-center mt-4">No Records Found</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body pl-0">
+              <h5 class="text-green"><i class="fas fa-calendar-alt"></i> Lab Test Result</h5>
+              <div class="row">
+                <div class="el-card is-always-shadow">
+                  <div class="el-card__body" style="min-height: 155px">
+                    <div class="row" *ngIf="selectedAppointment.appointmentCurrentStatus == 6">
+                      <div
+                        class="appoiment-view col-lg-12"
+                        style="padding-left: 15px; padding-right: 15px"
+                        *ngFor="let testResult of appointmentDetails.testResults"
+                      >
+                        <button ngcontent-ebk-c162="" class="light-blue cursor" (click)="openTestResult(testResult.fileLink)">
+                          <span>{{ testResult.fileName }}</span> <i class="fa fa-download float-right" style="margin-top: 4px"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="nolabcontent" *ngIf="appointmentDetails.appointmentCurrentStatus != 6">
+                      <img style="display: block; margin: auto" src="../../assets/images/noresult.png" class="nolabresultimg" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="card">
+        <div class="card-body pl-0">
+          <h5 class="text-green"><i class="fas fa-calendar-alt"></i> Patient Health Check History</h5>
+          <div class="row ">
+            <div class="col-lg-12" style="max-height:300px;overflow: auto;">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                        <th>Appt ID</th>
+                          <th>Appt Date</th>                          
+                          <th>Service</th>
+                          <th class="text-end">Price</th>
+                          <th>Status</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                        <td>APP54564</td>
+                          <td>12/12/2022</td>                          
+                          <td>Home Nursing Services</td>
+                          <td class="text-end">0.00</td>
+                          <td><span class="badge bg-success font-size-12">Inprocess</span></td>
+                          <td><a routerLink="/appointments/view"><i class="fa fa-eye"></i></a></td>
+                      </tr>
+                      <tr>
+                        <td>APP568</td>
+                          <td>12/12/2022</td>                          
+                          <td>COVID-19 Test (PCR) at Home</td>
+                          <td class="text-end">0.00</td>
+                          <td><span class="badge bg-info font-size-12">Completed</span></td>
+                          <td><a routerLink="/appointments/view"><i class="fa fa-eye"></i></a></td>
+                      </tr>
+                      <tr>
+                        <td>APP4353</td>
+                          <td>12/12/2022</td>                          
+                          <td>Vitamin IV Drips - Home Visit</td>
+                          <td class="text-end">0.00</td>
+                          <td><span class="badge bg-info font-size-12">Completed</span></td>
+                          <td><a routerLink="/appointments/view"><i class="fa fa-eye"></i></a></td>
+                      </tr>
+                     
+                     
+                  </tbody>
+              </table>
+          </div> 
+        </div>
+        </div>
+      </div> -->
+        </div>
+      </div>
+      <div class="col-lg-6" style="padding-right: 0px">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body pl-0">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="text-green"><i class="fas fa-sticky-note"></i>  Admin to Patient Notes</h5>
+
+                  <div class="row mt-2 pt-2">
+                    <div class="col-lg-12" style="min-height: 50px">
+                      <h6 *ngIf="appointmentDetails.serviceNotes != null" class="text-muted mt-4">{{ appointmentDetails.serviceNotes }}</h6>
+                      <h6 *ngIf="appointmentDetails.serviceNotes == null" class="text-muted text-center mt-4">No Records Found</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body pl-0 pb-2">
+              <div class="row">
+                <div class="col-lg-12" style="min-height: 50px">
+                  <h5 class="text-green"><i class="far fa-money-bill-alt"></i> Coupon Code</h5>
+
+                  <div class="row mt-2 pt-2">
+                    <div class="col-lg-12">
+                      <h6 class="mt-0 pt-4" style="border-top: 1px dashed #ccc">Applied Promotion Code</h6>
+                      <h4 class="pb-2">
+                        <span class="badge bg-primary pt-1 px-2 font-size-13" style="border-radius: 20px">{{ appointmentDetails.promoCode }}</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

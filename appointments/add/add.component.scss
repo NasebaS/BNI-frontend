@@ -1,0 +1,40 @@
+.card-title{border-bottom: 1px solid #ccc;
+    padding-bottom: 18px;}
+
+    .table tr td label{cursor: pointer;}
+    .time-slots a{margin-right:0px;overflow-wrap: break-word;display: inline-flex;margin-bottom:10px;cursor:pointer}
+    .time-slots a label{cursor: pointer;}
+    .time-slots input[type=radio] + label {
+        color: #646464;
+        background: #f0f0f0;
+        font-style: italic;
+        padding:6px 10px 4px 10px !important;
+      } 
+      .time-slots input[type=radio] + label:hover {
+        
+        background: #e1dddd;
+        
+      } 
+      .time-slots input[type=radio]:checked + label {
+        color: #fff;
+        font-style: normal;
+        background: #2ec5cc;
+      } 
+
+      .form-control:disabled, .form-control[readonly]{background: #eff2f7 !important;}
+
+      .fixed-th{
+        background: #fff;
+        z-index: 10;
+        position: sticky;
+        top: 0px;
+      }
+      .btn-primary:disabled, .btn-primary.disabled {
+        color: #fff;
+        background-color: #757474;
+        border-color: #525050;
+        cursor: not-allowed !important;
+    }
+    .span-clr{
+      color: red;
+    }

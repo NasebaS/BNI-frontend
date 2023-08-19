@@ -1,0 +1,245 @@
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <app-page-title title="Create User" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-green font-size-18">Personal Details</h4>
+
+                    <form>
+
+                        
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-4">
+                                    <label for="short-bio">Upload Photo</label>
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label>User Role</label>
+                                    <ng-select [items]="selectRole"></ng-select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label>Title</label>
+                                    <ng-select [items]="selectTitle"></ng-select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="firstname">First Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="firstname-arabic">First Name in Arabic</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="lastname">Last Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="lastname-arabic">Last Name in Arabic</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="email">Email ID</label>
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label>Nationality</label>
+                                    <ng-select [items]="selectNationality"></ng-select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-4">
+                                    <label>Code</label>
+                                    <ng-select [items]="selectCode"></ng-select>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">                                    
+                                    <label for="mobile">Mobile Number</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-4">
+                                    <label for="dob">DOB</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-4">                                    
+                                    <label>Blood Group</label>
+                                    <ng-select [items]="selectBG"></ng-select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="mb-4">                                    
+                                    <label>Degree</label>
+                                    <ng-select [items]="selectDegree"></ng-select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label>Languages Spoken</label>
+                                    <ng-select [items]="selectLanguage" [multiple]="true"></ng-select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">                                    
+                                    <label>Language Spoken in Arabic</label>
+                                    <ng-select [items]="selectArabicLanguage" [multiple]="true"></ng-select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-green font-size-18">Medical Details</h4>
+
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="medical-reg-no">Medical Reg No</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="medical-license-exp">Medical Licence Expiry</label>
+                                    <input type="date" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="experience">Experience</label>
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="experience">Experience in Arabic</label>
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Service Type</h4>
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="horizontalLayout-Check">
+                                    <label class="form-check-label" for="horizontalLayout-Check">
+                                        Home Visit
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-4">
+                                    <label for="short-bio">Short Biography</label>
+                                    <textarea class="form-control" style="height:100px;"></textarea>
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-4">
+                                    <label for="short-bio">Short Biography in Arabic</label>
+                                    <textarea class="form-control" style="height:100px;"></textarea>
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-4">
+                                    <label for="short-bio">Upload Attachments</label>
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">                                
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="activeUser" checked>
+                                    <label class="form-check-label" for="activeUser">
+                                        Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        
+                    </form>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>    
+    <!-- end row -->
+    <div class="row d-flex mb-4">
+        <div class="col-sm-12">
+            <div class="justify-content-center text-center">
+                <button type="submit" class="btn btn-primary w-md">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

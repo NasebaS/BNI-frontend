@@ -1,0 +1,28 @@
+.L{background:#fbb8b5;padding:0px 6px;color:#c3251d; border-radius:4px;}
+.N{background:#afffde;color:#10915c;padding:0px 5px; border-radius:4px;}
+.P{background:#a9ecf4;color:#1c7984;padding:0px 6px; border-radius:4px;}
+.G{background:#eee29d;color:#998b40;padding:0px 5px; border-radius:4px;}
+
+.appoiment-view button.light-blue {
+	background: #f0f0f0;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    width: 50%;
+	transition: 1s;
+}
+.appoiment-view button.light-blue:hover{background:#e6fbfa;border:1px solid #afd2d0}
+.appoiment-view button .float-right{
+  float: right;
+}
+.appoiment-view button span{
+  float: left;
+}
+.avatar-lg{
+  height: 8rem;
+  width: 8rem;
+}
+.emp-img{
+  background: #dceffa; padding-top: 20px;min-height: 313px;padding-top: 60px;
+}
