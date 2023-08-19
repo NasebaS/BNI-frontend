@@ -1,0 +1,115 @@
+
+  <div class="container-fluid">
+  
+    <div class="row mt-4 mb-3">
+      <div class="col-lg-6 pt-2">
+        <h3>Ledger Entry</h3>
+      </div>
+      <div class="col-lg-6 text-end">
+        <a (click)="extraLarge(newUsers)" class="btn btn-primary"><i class="fa fa-plus-circle"></i> New Ledger</a>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body scrolltable">
+            <table id="example" class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline display" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <!-- <th>Ledger ID</th> -->
+                  <th>Ledger Name</th>
+                  <th>Type</th>                  
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let table of ledgerList; let i = index">
+                  <tr *ngIf="table.status === 'Active'">
+                    <td>{{ table.serialNumber}}</td>
+                    <!-- <td>{{ table.ledgerId }}</td> -->
+                    <td>{{ table.name }}</td>
+                    <td>{{ table.type }}</td>  
+                    <!-- <td>{{ table.status }}</td>                      -->
+                    <td>
+                      <a style="margin-right: 10px; background: #d9f1fe; padding: 5px 7px; border-radius: 40px" (click)="userClicked(table)">
+                        <i class="far fa-edit"></i>
+                      </a>
+                      <a class="tbl-btn" (click)="deleteLedger(table.ledgerId)">
+                        <i class="far fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #newUsers let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">{{ modalHeaderText }}</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Close click')"></button>
+    </div>
+    <div class="modal-body custom-modal-body">
+      <form [formGroup]="newUsersForm" id="newUsersForm" (ngSubmit)="postuser()">
+        <div class="row">  
+          <div class="col-md-8">
+            <div class="mb-4">
+              <label for="firstname ">Ledger Name<span class="text-danger font-size-14">*</span></label>
+              <input type="text" class="form-control ledgerclass" formControlName="ledger_name" [ngClass]="{ 'is-invalid': submitted && f.ledger_name.errors }" />
+              <div *ngIf="submitted && f.ledger_name.errors" class="invalid-feedback">
+                <div *ngIf="f.ledger_name.errors.required">Ledger Name is required</div>
+                <div *ngIf="f.ledger_name.errors.duplicateLedgerName">Ledger Name must be unique</div>
+              </div>
+            </div>
+          </div>          
+          <div class="col-md-4">
+            <div class="mb-4">
+              <label for="type">Type<span class="text-danger font-size-14">*</span></label>
+              <select class="form-control typeclass" formControlName="ledger_type" [ngClass]="{ 'is-invalid': submitted && f.ledger_type.errors }">
+                <option value="" disabled selected>Select Type</option>
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+               
+                <!-- Add more options as needed -->
+              </select>
+              <div *ngIf="submitted && f.ledger_type.errors" class="invalid-feedback">
+                <div *ngIf="f.ledger_type.errors.required">Type is required</div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-4">
+            <div class="mb-4">
+              <label for="status">Status<span class="text-danger font-size-14">*</span></label>
+              <select class="form-control statusclass" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+              <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                <div *ngIf="f.status.errors.required">Status is required</div>
+              </div>
+            </div>
+          </div> -->
+          
+          
+                 
+        </div>      
+        
+        <div class="row d-flex">
+          <div class="col-sm-12">
+            <div class="justify-content-center text-center">
+              <button type="submit" class="btn btn-primary w-md me-2">Submit</button>
+              <button type="submit" class="btn btn-info w-md" aria-label="Close" (click)="modal.dismiss('Close click')">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+

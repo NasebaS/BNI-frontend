@@ -1,0 +1,97 @@
+<div class="container">
+    <h1>Ledger Report</h1>
+    
+    <div class="form-row">
+      <div class="form-group form-date">
+        <label class="label" for="fromDate">From Date:</label>
+        <input class="date-picker" type="date" id="fromDate" [(ngModel)]="fromDate">
+      </div>
+  
+      <div class="form-group form-date">
+        <label class="label" for="toDate">To Date:</label>
+        <input class="date-picker" type="date" id="toDate" [(ngModel)]="toDate">
+      </div>
+   
+  
+    
+      <div class="form-group form-ledger">
+        <label class="label" for="ledgerName">Ledger Name</label>
+        <select class="select-box" id="ledgerName" [(ngModel)]="selectedLedger" >
+            <option value="All" selected>All</option>
+            <option *ngFor="let ledgerName of ledgerNames" [value]="ledgerName">{{ ledgerName }}</option>
+        </select>
+      </div>
+  
+      <div class="form-group form-type">
+        <label class="label" for="transactionType">Type:</label>
+        <select class="select-box" id="transactionType" [(ngModel)]="selectedType" >
+             <option value="All" selected>All</option>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+   
+        </select>
+      </div>
+      <button class="button" (click)="applyFilters()">Search</button>
+      <a style="cursor: pointer" (click)="exportexcel()">
+        <i class="fas fa-download">Export
+        </i>
+      </a>
+    </div>
+  
+   
+<div class="main">
+    <div class="container-fluid">
+  
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body scrolltable">
+            <table id="example" class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline display" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <!-- <th>Expense ID</th> -->
+                  <!-- <th>S.No</th> -->
+                  <th>Date</th>                  
+                  <th>Reference No</th>
+                  <th>Ledger Name</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of ledgerReportList;let i = index">
+                  <tr >
+                    <!-- <td>{{ table.ExpenseId }}</td> -->
+                    <!-- <td>{{ item.serialNumber}}</td> -->
+                    <td>{{ item.Date }}</td>
+                    <td>{{ item.RefNo }}</td>
+                    <td>{{ item.ledgerName }}</td>
+                    <td>{{ item.Type }}</td>  
+                    <td>{{ item.Amount }}</td>  
+                    
+                    <!-- <td>{{ table.status }}</td>                      -->
+                    
+                  </tr>
+                </ng-container>
+              </tbody>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="total">
+    <div class="total-income">
+      <label class="total-income-label" for="total-income-label">Total Income: </label>
+      <p class="total-amount">{{ totalIncome | currency:'INR' }}</p>
+    </div>
+    <div class="total-expense">
+      <label class="total-expense-label" for="total-expense-label">Total Expense: </label>
+      <p class="total-amount">{{ totalExpense | currency:'INR' }}</p>
+    </div>
+  </div>
+</div>
+  </div>
+  

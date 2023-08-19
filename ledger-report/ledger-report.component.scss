@@ -1,0 +1,133 @@
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #fff;
+    background-color: #0056b3;
+    padding: 15px;
+    font-weight: bold;
+
+  }
+  a{
+    margin-top: 30px;
+  }
+  .form-row {
+    display: flex;
+   
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+  }
+  
+  .form-date{
+    flex-basis: 12%;
+  }
+  
+  .form-type {
+    flex-basis: 10%;
+  }
+  .form-ledger{
+    flex-basis: 30%;
+  }
+  .label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #555;
+  }
+  
+  .date-picker,
+  .select-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .date-picker:focus,
+  .select-box:focus {
+    border-color: #007bff;
+  }
+  
+  .select-box {
+    background-color: #f9f9f9;
+  }
+  
+  .button {
+   margin-top: 25px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  .total {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    border-radius: 8px;
+    width:500px;
+    margin-left: 400px;
+  
+  }
+  .main{
+    justify-content: center;
+    align-items: center;
+   
+  }
+  .total-income,
+  .total-expense {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .total-label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .total-amount {
+    font-size: 24px;
+    color: #007bff;
+  }
+  
+  /* Responsive layout */
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+    }
+  
+    .form-group,
+    .form-dropdown {
+      flex-basis: 100%;
+    }
+  }
+  
