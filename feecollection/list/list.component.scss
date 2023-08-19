@@ -1,0 +1,49 @@
+.L{background:#fbb8b5;padding:0px 6px;color:#c3251d; border-radius:4px;}
+.N{background:#afffde;color:#10915c;padding:0px 5px; border-radius:4px;}
+.P{background:#a9ecf4;color:#1c7984;padding:0px 6px; border-radius:4px;}
+.G{background:#eee29d;color:#998b40;padding:0px 5px; border-radius:4px;}
+
+
+.member .card {
+    border-radius: 25px 0;
+    border: solid 2px #cf2031;
+}
+.cardimg {
+    width: 100px;
+    height: 100px;
+    margin: 15px auto;
+    border-radius: 50px;
+    object-fit: fill;
+}
+.card-block {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.cardtitle_h4 {
+    font-weight: 800;
+}
+.cardtitles {
+    font-weight: 600;
+    font-size: 13px;
+    color: #000;
+    text-transform: uppercase;
+}
+.cardtitle_p {
+    font-weight: 500;
+    color: #000;
+    font-size: 13px;
+}
+.cardtitle_h5 {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.page-title-box h4 {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 16px !important;
+}
+.card-block p{margin-bottom: 10px;}

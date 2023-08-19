@@ -1,0 +1,69 @@
+.card-title{border-bottom: 1px solid #ccc;
+    padding-bottom: 18px;}
+
+#customers {
+    width: 95%;
+    margin: 15px auto;
+}
+
+#customers td, #customers th {
+border: 1px solid #ddd;
+padding: 8px;
+text-align: center;
+}
+
+// #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+// #customers tr:hover {background-color: #ddd;}
+
+#customers th {
+padding-top: 12px;
+padding-bottom: 12px;
+font-size: 15px;
+text-align: center;
+background-color: #cf2031;
+color: white;
+}
+
+.isinz{
+    height: 30px;
+    width: 60%;
+    // margin: auto;
+    // display: block;
+}
+.badge-primary {
+    color: #fff;
+    background-color: #007bff;
+}
+.badge-success {
+    color: #fff;
+    background-color: #28a745;
+}
+.badge-danger {
+    color: #fff;
+    background-color: #dc3545;
+}
+.badge-warning {
+    color: #212529;
+    background-color: #ffc107;
+}
+.badge-info {
+    color: #fff;
+    background-color: #17a2b8;
+}
+.badge {
+    display: inline-block;
+    padding: 0.5em 1.8em;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 30px;
+}
+// .invalid-feedback {
+//     font-size: 13px;
+//     color: #f46a6a;
+//     font-weight: 600;
+// }

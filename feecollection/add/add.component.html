@@ -1,0 +1,73 @@
+<app-loader></app-loader>
+<div class="container-fluid">
+
+    <div class="row ">
+    
+        <div class="col-lg-6 pt-2 mt-3">
+        <!-- start page title -->
+        <app-page-title title=""></app-page-title>
+        <!-- end page title -->
+        </div>
+        </div>
+
+    <div class="row">
+        <div class="col-lg-8 m-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-green font-size-18">Bulk Entry</h4>
+                    <form [formGroup]="searchForm" id="searchForm" (ngSubmit)="postsearch()">
+                        <!-- <form [formGroup]="addMemberForm" id="addMemberForm"> -->
+                        <div class="row" style="align-items: center;">
+                            <div class="col-md-4 mt-2">
+                                <div class="mb-4">
+                                    <label>Meeting Date &nbsp;</label>
+                                    <input type="text" formControlName="meetingdate" id="datepicker-3" class="form-control"  autocomplete="off" [ngClass]="{ 'is-invalid': submitted && m.meetingdate.errors }" >
+                                    <!-- <div *ngIf="submitted && m.meetingdate.errors" class="invalid-feedback">
+                                        <div *ngIf="m.meetingdate.errors.required">Please Select Meeting Date</div>
+                                      </div> -->
+                                </div>
+                            </div> 
+                            <div class="col-md-2 mt-3">
+                            <div class="justify-content-center text-center">
+                                <button type="submit" class="btn btn-primary w-md">Search</button>
+                            </div>  
+                        </div>                        
+                        </div>
+
+                    </form>
+                </div>
+                <form [formGroup]="memberForm" id="memberForm">
+                <table id="customers">
+                    <tr>
+                      <th>Member Name</th>
+                      <th>Attendance Type</th>
+                      <!-- <th>Payment Status</th> -->
+                    </tr>
+                    <tr *ngFor="let member of membersList;let i = index">
+                      <td>{{member.member_name}}</td>
+                      <td>
+                        <!-- <ng-select [items]="selectRole" formControlName="prodCode"></ng-select> -->
+                        <!-- <select class='isinz' formControlName="prodCode{{i}}"> -->
+                        <select class='isinz'>
+                            <option value="0">Select</option>
+                            <option value="Absent">Absent</option>
+                            <option value="Medical">Medical</option>
+                        </select>
+                      </td>
+                      <!-- <td><span class="badge badge-success">Paid</span></td> -->
+                    </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </div>    
+    <!-- end row -->
+    <!-- <div class="row d-flex mb-4">
+        <div class="col-sm-12">
+            <div class="justify-content-center text-center">
+                <button type="submit" class="btn btn-primary w-md">Submit</button>
+            </div>
+        </div>
+    </div> -->
+</div>

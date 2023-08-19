@@ -1,0 +1,68 @@
+<div class="container">
+  <h1>Profit/Loss Report</h1>
+
+  <div class="form-row">
+    <div class="date">
+      <div class="form-group form-date">
+        <label class="label" for="fromDate">From Date:</label>
+        <input class="date-picker" type="date" id="fromDate" [(ngModel)]="fromDate">
+      </div>
+
+      <div class="form-group form-date">
+        <label class="label" for="toDate">To Date:</label>
+        <input class="date-picker" type="date" id="toDate" [(ngModel)]="toDate">
+      </div>
+      <button class="button" (click)="applyFilters()">Search</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section">            
+            <table class="table">
+              <thead>
+                <tr>
+                  <th colspan="2">Income</th>
+                  <th colspan="2">Expense</th>
+                </tr>
+                <tr>
+                  <th>Ledger Name</th>
+                  <th>Amount</th>
+                  <th>Ledger Name</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <td><strong>Weekly Fee</strong></td>
+                <td><strong>{{'₹'+Weeklyfee.toLocaleString('en-IN')||'0'}}</strong></td>
+                <tr *ngFor="let row of incomeExpenseRows">
+                 
+                  <td>{{ row.incomeLedger }}</td>
+                  <td>{{row.incomeAmount .toLocaleString('en-IN')}}</td>
+                  <td>{{ row.expenseLedger }}</td>
+                  <td>{{row.expenseAmount .toLocaleString('en-IN')}}</td>
+                </tr>
+               
+              </tbody>
+              <tfoot>
+                <tr class="totalrow">
+                  <td>Total Income</td>
+                  <td >{{ '₹ ' + (totalIncomeFinal?.toLocaleString('en-IN') || '0') }}</td>
+                  <td>Total Expense</td>
+                  <td >{{ '₹ ' + (totalExpense?.toLocaleString('en-IN') || '0') }}</td>
+                </tr>
+                <tr class="profit">
+                  <td colspan="3">{{ Profit !== 0 ? 'Profit' : 'Loss' }}</td>
+                  <td>{{'₹'+ (Profit !== 0 ? Profit : Loss) .toLocaleString('en-IN')||'0' }}</td>
+                </tr>
+              </tfoot>
+            </table>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<app-loader></app-loader>
+<div class="container-fluid">
+  <div class="row ">
+    
+    <div class="col-lg-6 pt-2 mt-3 mb-3">
+      <app-page-title title="Members List" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    </div>
+    <div class="col-lg-6 text-end mt-3 mb-3">
+      <!-- <a (click)="extraLarge(exlargeModal)" class="btn btn-primary">New Department</a> -->
+      <a href="#/members/add" class="btn btn-primary">Add Member</a>
+    </div>
+  
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+        <div class="">
+            <div class="row">
+                <div class="col-md-3 mb-4 member" *ngFor="let member of membersList">
+                    <div class="card">
+                        <img class="cardimg" src="{{member.image_path}}" alt="">
+                        <div class="card-block">
+                            <h4 class="cardtitle_h4 mt-0">{{member.member_name}}</h4>
+                             <p class="cardtitles mb-2">{{member.company_name}}</p>
+                            <p class="cardtitle_p mb-0">{{member.industry_type}}</p>
+                            <div class="mt-3 mb-3">
+                                <p><a href="mailto:{{member.email_id}}" class="cardtitle_h5">{{member.email_id}}</a></p>
+                                <p><a href="tel:+91{{member.mobile_no}}" class="cardtitle_h5">+91-{{member.mobile_no}}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

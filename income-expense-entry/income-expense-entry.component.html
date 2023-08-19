@@ -1,0 +1,149 @@
+
+<div class="container-fluid">
+  
+    <div class="row mt-4 mb-3">
+      <div class="col-lg-6 pt-2">
+        <h3>Income/Expense Entry</h3>
+      </div>
+      <div class="col-lg-6 text-end">
+        <a (click)="extraLarge(newUsers)" class="btn btn-primary"><i class="fa fa-plus-circle"></i> New Expense</a>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body scrolltable">
+            <table id="example" class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline display" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <!-- <th>Expense ID</th> -->
+                  <th>S.No</th>
+                  <th>Date</th>                  
+                  <th>Reference No</th>
+                  <th>Ledger Name</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Notes</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let table of expenseList; let i = index">
+                  <tr >
+                    <!-- <td>{{ table.ExpenseId }}</td> -->
+                    <td>{{ table.serialNumber}}</td>
+                    <td>{{ table.Date }}</td>
+                    <td>{{ table.RefNo }}</td>
+                    <td>{{ table.ledgerName }}</td>
+                    <td>{{ table.Type }}</td>  
+                    <td>{{ table.Amount }}</td>  
+                    <td>{{ table.Notes }}</td>  
+                    <!-- <td>{{ table.status }}</td>                      -->
+                    <td>
+                      <a style="margin-right: 10px; background: #d9f1fe; padding: 5px 7px; border-radius: 40px" (click)="userClicked(table)">
+                        <i class="far fa-edit"></i>
+                      </a>
+                      <a class="tbl-btn" (click)="deleteExpense(table.ExpenseId)">
+                        <i class="far fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #newUsers let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">{{ modalHeaderText }}</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Close click')"></button>
+    </div>
+    <div class="modal-body custom-modal-body">
+      <form [formGroup]="newUsersForm" id="newUsersForm" (ngSubmit)="postuser()">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="mb-4">
+              <label for="date">Date<span class="text-danger font-size-14">*</span></label>
+              <input type="date" class="form-control dateclass" formControlName="entry_date" [ngClass]="{ 'is-invalid': submitted && f.entry_date.errors }" />
+              <div *ngIf="submitted && f.entry_date.errors" class="invalid-feedback">
+                <div *ngIf="f.entry_date.errors.required">Date is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-4">
+              <label for="referenceNumber">Reference Number<span class="text-danger font-size-14">*</span></label>
+              <input type="text" class="form-control referenceclass" formControlName="refnum" [ngClass]="{ 'is-invalid': submitted && f.refnum.errors }" />
+              <div *ngIf="submitted && f.refnum.errors" class="invalid-feedback">
+                <div *ngIf="f.refnum.errors.required">Reference Number is required</div>
+              </div>
+            </div>
+          </div>
+      
+        <div class="col-md-4">
+          <div class="mb-4">
+            <label for="ledgerName">Ledger Name<span class="text-danger font-size-14">*</span></label>
+            
+<select formControlName="ledgername" class="form-control" (change)="autofillIncomeExpense($event.target.value)">
+  <option value="" disabled selected>Select Option</option>
+  <option *ngFor="let ledgerName of ledgerNames" [value]="ledgerName">{{ ledgerName }}</option>
+</select>
+<div *ngIf="submitted && f.ledgername.errors" class="invalid-feedback">
+              <div *ngIf="f.ledgername.errors.required">Ledger Name is required</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="mb-4">
+            <label for="type">Type<span class="text-danger font-size-14">*</span></label>
+            <input
+            class="form-control"
+            formControlName="type"
+            [ngClass]="{ 'is-invalid': submitted && f.type.errors }"
+            [value]="newUsersForm.controls['type'].value"
+            readonly
+          />
+          
+            
+            <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+              <div *ngIf="f.type.errors.required">Type is required</div>
+            </div>
+          </div>
+        </div>
+        
+          <div class="col-md-4">
+            <div class="mb-4">
+              <label for="amount">Amount<span class="text-danger font-size-14">*</span></label>
+              <input type="number" class="form-control amountclass" formControlName="amount" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+              <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                <div *ngIf="f.amount.errors.required">Amount is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-4">
+              <label for="notes">Notes</label>
+              <textarea class="form-control notesclass" formControlName="notes"></textarea>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row d-flex">
+          <div class="col-sm-12">
+            <div class="justify-content-center text-center">
+              <button type="submit" class="btn btn-primary w-md me-2">Submit</button>
+              <button type="button" class="btn btn-info w-md" aria-label="Close" (click)="modal.dismiss('Close click')">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+  
